@@ -10,14 +10,18 @@
       href="https://fonts.googleapis.com/css2?family=Itim&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Tic-Tact-Toe</title>
   </head>
   <body>
-    <main>
+    <main class="background">
+      <!-- game title -->
       <section><h1 class="title">Tic Tac Toe</h1></section>
+      <!-- whose turn currently it is -->
+      <!-- span which will contain X or O depending on the current player -->
       <section class="display">
         Player <span class="display-player playerX">X</span>'s turn
       </section>
+      <!-- game board -->
       <section class="container">
         <div class="tile"></div>
         <div class="tile"></div>
@@ -29,8 +33,10 @@
         <div class="tile"></div>
         <div class="tile"></div>
       </section>
-      <section class="display announcer hide"></section>
+      <!-- results announcement/ display hidden for the start of the game. It's content is empty by default and will be modified by JavaScript -->
+      <section class="display announcer hide">Player</section>
       <section class="controls">
+        <!-- game controller/ game reset button -->
         <button id="reset">Reset</button>
       </section>
     </main>

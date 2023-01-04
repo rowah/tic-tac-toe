@@ -1,13 +1,21 @@
+/* removes any browser defined margins and paddings*/
 * {
   padding: 0;
   margin: 0;
-  font-family: "Itim", cursive;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+.background {
+  background-color: #12181b;
+  height: 100vh;
+  padding-top: 1px;
+}
+/* orders the board divs in the game using grid */
 .container {
+  border: 1px solid white;
   margin: auto;
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 33% 33% 33%;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-template-rows: 33.3% 33.3% 33.3%;
   max-width: 300px;
 }
 .tile {
@@ -19,4 +27,49 @@
   align-items: center;
   font-size: 50px;
   cursor: pointer;
+}
+.title {
+  color: white;
+  text-align: center;
+  font-size: 40px;
+  margin-top: 10%;
+}
+.display {
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+.controls button {
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  font-size: 20px;
+  margin-left: 1em;
+  cursor: pointer;
+}
+
+#reset {
+  background-color: #ff3860;
+}
+/* hides the winner announcement section */
+.hide {
+  display: none;
+}
+/* Utility classes; two separate colors to better differentiate between the two players. Player X - green color while Player O - blue color. */
+.playerX {
+  color: #09c372;
+}
+
+.playerO {
+  color: #498afb;
 }
