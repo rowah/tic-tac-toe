@@ -2,7 +2,14 @@
 const tiles = Array.from(document.querySelectorAll(".tile")); //1. Grabs all board titles and creates and array of tile
 const playerDisplay = document.querySelector(".display-player");
 const winnerAnnouncer = document.querySelector(".announcer");
+const gameOver = document.querySelector(".gameover");
 const resetButton = document.getElementById("reset");
+const display = document.querySelector(".display");
+
+//adds event listener to the tiles
+tiles.forEach((tile, index) => {
+  tile.addEventListener("click", () => playerAction(tile, index));
+});
 
 //adding global game control variables
 let board = ["", "", "", "", "", "", "", "", ""]; //initializes a board with an array of 9 empty strings; it will hold the X and O values for every tile
@@ -42,10 +49,8 @@ const updateBoard = (index) => {
 
 //handling player change
 const changePlayer = () => {
-  playerDisplay.classList.remove(`player${currentPlayer}`); //remove the current player's class from the playerDisplay
-  currentPlayer = currentPlayer === "X" ? "O" : "x"; //ternary expression changes the current player's value. If it was X it will be O otherwise it'll be X
+  currentPlayer = currentPlayer === "X" ? "O" : "X"; //ternary expression changes the current player's value. If it was X it will be O otherwise it'll be X
   playerDisplay.innerText = currentPlayer; //update the innerText of the playerDisplay and apply the new player class to it
-  playerDisplay.classList.add(`player${currentPlayer}`);
 };
 
 //announcing the end game results
@@ -53,16 +58,19 @@ const changePlayer = () => {
 const announce = (type) => {
   switch (type) {
     case PLAYERO_WON:
-      winnerAnnouncer.innerHTML = "Player O Won";
+      winnerAnnouncer.innerHTML = "Player O Won!";
       break;
     case PLAYERX_WON:
-      winnerAnnouncer.innerHTML = "Player X Won";
+      winnerAnnouncer.innerHTML = "Player X Won!";
       break;
     case TIE:
-      winnerAnnouncer.innerText = "It's a tie";
+      winnerAnnouncer.innerText = "It's a tie!";
   }
+
+  winnerAnnouncer.classList.remove("hide");
+  gameOver.classList.remove("hide");
+  //display.innerHTML = "";
 };
-winnerAnnouncer.classList.remove("hide");
 
 //Result evaluation
 function handleResultValidation() {
@@ -110,7 +118,24 @@ const playerAction = (tile, index) => {
   }
 };
 
-//adds event listener to the tiles
-tiles.forEach((tile, index) => {
-  tile.addEventListener("click", () => userAction(tile, index));
-});
+//game reset
+//set the board to consist of nine empty strings, set the game to active, remove the announcer and change the player back to X (by definition X starts always)
+//loop through the tiles and set the innerText back to an empty string
+
+const resetBoard = () => {
+  board = ["", "", "", "", "", "", "", "", ""];
+  isGameActive = true;
+  winnerAnnouncer.classList.add("hide");
+  gameOver.classList.add("hide");
+  //display.innerHTML = `Player <span class="display-player">X</span>'s turn`;
+
+  if (currentPlayer === "O") {
+    changePlayer();
+  }
+
+  tiles.forEach((tile) => {
+    tile.innerText = "";
+  });
+};
+
+resetButton.addEventListener("click", resetBoard);
