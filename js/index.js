@@ -33,3 +33,17 @@ const isValidAction = (tile) => {
   }
   return true;
 };
+
+//updating the board
+//receives an index as a parameter and set the corresponding element in the board array from being empty to be the sign of our current player.
+const updateBoard = (index) => {
+  board[index] = currentPlayer;
+};
+
+//handling player change
+const changePlayer = () => {
+  playerDisplay.classList.remove(`player${currentPlayer}`); //remove the current player's class from the playerDisplay
+  currentPlayer = currentPlayer === "X" ? "O" : "x"; //ternary expression changes the current player's value. If it was X it will be O otherwise it'll be X
+  playerDisplay.innerText = currentPlayer; //update the innerText of the playerDisplay and apply the new player class to it
+  playerDisplay.classList.add(`player${currentPlayer}`);
+};
