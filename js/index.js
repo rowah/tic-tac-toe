@@ -63,3 +63,34 @@ const announce = (type) => {
   }
 };
 winnerAnnouncer.classList.remove("hide");
+
+//Result evaluation
+function handleResultValidation() {
+  let roundWon = false; //create a roundWon variable and initialize it with false;
+  //loop through the winningConditions array and check the board for each winning condition.
+  for (let i = 0; i <= 7; i++) {
+    const winningCondition = winningConditions[i];
+    //create variables to compare
+    const a = board[winningCondition[0]];
+    const b = board[winningCondition[1]];
+    const c = board[winningCondition[2]];
+    //game continues if any of the tiles in the win condition still has empty strings;
+    if (a === "" || b === "" || c === "") {
+      continue; // skip to the next iteration since winning cannot occur with an empty tile in the win condition
+    }
+    //if the three variables are strictly equal
+    if (a === b && b === c) {
+      roundWon = true;
+      break;
+    }
+  }
+  //After the loop check the value of the roundWon variable; true, announce a winner and set the game to inactive;
+  if (roundWon) {
+    //call announce function wth the current player as the winner
+    announce(currentPlayer === "X" ? PLAYERX_WON : PLAYERO_WON);
+    isGameActive = false;
+    return;
+  }
+  //If no winner yet check for empty tiles on the board and if we don't have a winner and there are no empty tiles left, we announce a tie
+  if (!board.includes("")) announce(TIE);
+}
