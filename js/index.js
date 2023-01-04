@@ -13,3 +13,23 @@ let isGameActive = true; //true until someone wins or the game ends in a tie. In
 const PLAYERX_WON = "PLAYERX_WON";
 const PLAYERO_WON = "PLAYERO_WON";
 const TIE = "TIE";
+
+//STORING WINNING CONDITIONS ON THE BOARD
+const winningConditions = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
+
+//determining valid player action; if the inner text of the time clicked is X or O, the action is invalid else true
+const isValidAction = (tile) => {
+  if (tile.innerText === "X" || tile.innerText === "O") {
+    return false;
+  }
+  return true;
+};
