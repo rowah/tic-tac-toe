@@ -65,11 +65,3 @@
 .hide {
   display: none;
 }
-/* Utility classes; two separate colors to better differentiate between the two players. Player X - green color while Player O - blue color. */
-.playerX {
-  color: #09c372;
-}
-
-.playerO {
-  color: #498afb;
-}

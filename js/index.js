@@ -47,3 +47,19 @@ const changePlayer = () => {
   playerDisplay.innerText = currentPlayer; //update the innerText of the playerDisplay and apply the new player class to it
   playerDisplay.classList.add(`player${currentPlayer}`);
 };
+
+//announcing the end game results
+//function receives an end game type and update the innerText of the announcer DOM node based on the result
+const announce = (type) => {
+  switch (type) {
+    case PLAYERO_WON:
+      winnerAnnouncer.innerHTML = "Player O Won";
+      break;
+    case PLAYERX_WON:
+      winnerAnnouncer.innerHTML = "Player X Won";
+      break;
+    case TIE:
+      winnerAnnouncer.innerText = "It's a tie";
+  }
+};
+winnerAnnouncer.classList.remove("hide");
