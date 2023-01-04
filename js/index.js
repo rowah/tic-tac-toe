@@ -26,7 +26,7 @@ const winningConditions = [
   [2, 4, 6],
 ];
 
-//determining valid player action; if the inner text of the time clicked is X or O, the action is invalid else true
+//determining valid player action; if the inner text of the tile clicked is X or O, the action is invalid else true
 const isValidAction = (tile) => {
   if (tile.innerText === "X" || tile.innerText === "O") {
     return false;
@@ -94,3 +94,23 @@ function handleResultValidation() {
   //If no winner yet check for empty tiles on the board and if we don't have a winner and there are no empty tiles left, we announce a tie
   if (!board.includes("")) announce(TIE);
 }
+
+//handling player actions
+//function will be called when the user clicks a tile
+//function receives a tile and an index as a parameter and is called when player clicks a file
+const playerAction = (tile, index) => {
+  //check if it is a valid action or not and check if the game is active currently or not.
+  if (isValidAction(tile) && isGameActive) {
+    //if both of them are true, update the innerText of the tile with the sign of the current player.
+    tile.innerText = currentPlayer;
+    //update the board array
+    updateBoard(index);
+    handleResultValidation();
+    changePlayer();
+  }
+};
+
+//adds event listener to the tiles
+tiles.forEach((tile, index) => {
+  tile.addEventListener("click", () => userAction(tile, index));
+});
