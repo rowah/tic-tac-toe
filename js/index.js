@@ -69,7 +69,8 @@ const announce = (type) => {
 
   winnerAnnouncer.classList.remove("hide");
   gameOver.classList.remove("hide");
-  //display.innerHTML = "";
+  //adds class hide to the section to remove player's turn when game is over.
+  display.classList.toggle("hide");
 };
 
 //Result evaluation
@@ -127,7 +128,8 @@ const resetBoard = () => {
   isGameActive = true;
   winnerAnnouncer.classList.add("hide");
   gameOver.classList.add("hide");
-  //display.innerHTML = `Player <span class="display-player">X</span>'s turn`;
+  //removes the added hide class
+  display.classList.toggle("hide");
 
   if (currentPlayer === "O") {
     changePlayer();
